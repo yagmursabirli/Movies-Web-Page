@@ -10,8 +10,8 @@ function Favorites() {
 
     return ( 
     <div>
-      <h2 className='favorites'>Your Favorites</h2>
-    <div className='movies-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 px-4">
+      <h2 className='favorites m-5 text-2xl font-bold '>Your Favorites</h2>
+    <div className='movies-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 px-4 m-8">
 '>
             {favorites.map(
                 (movie) => 

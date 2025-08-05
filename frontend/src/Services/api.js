@@ -3,7 +3,7 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 //sending request to api 
 export async function getPopularMovies() {
-  const res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
+  const res = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`);
   if (!res.ok) {
     throw new Error("API request failed!!");
   }
@@ -11,6 +11,24 @@ export async function getPopularMovies() {
   return data.results;
 }
  
+
+export async function getPopularTV() {
+  const res = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}`);
+  if (!res.ok) {
+    throw new Error("API request failed!!");
+  }
+  const data = await res.json();
+  return data.results;
+}
+
+export async function getPopularPeople() {
+  const res = await fetch(`https://api.themoviedb.org/3/trending/person/day?api_key=${API_KEY}`);
+  if (!res.ok) {
+    throw new Error("API request failed!!");
+  }
+  const data = await res.json();
+  return data.results;
+}
 
 export const searchMovies = async (query) => {
   const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`);
@@ -20,3 +38,10 @@ export const searchMovies = async (query) => {
   const data = await response.json();
   return data.results;
 };
+
+export async function getDetails(type, id) {
+  const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
+  if (!res.ok) throw new Error("Detail fetch failed");
+  const data = await res.json();
+  return data;
+}
