@@ -2,32 +2,59 @@ const BASE_URL = "https://www.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 //sending request to api 
-export async function getPopularMovies() {
-  const res = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`);
-  if (!res.ok) {
-    throw new Error("API request failed!!");
+export async function getPopularMovies(limit = 50) {
+  const movies = [];
+  let page = 1;
+
+  while (movies.length < limit) {
+    const res = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&page=${page}`);
+    if (!res.ok) {
+      throw new Error("API request failed!!");
+    }
+    const data = await res.json();
+    movies.push(...data.results);
+
+    if (data.page >= data.total_pages) break;
+    page++;
   }
-  const data = await res.json();
-  return data.results;
+
+  return movies.slice(0, limit);
 }
+
  
 
-export async function getPopularTV() {
-  const res = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}`);
+export async function getPopularTV(limit = 50) {
+  const tv = [];
+  let page = 1;
+  while(tv.length < limit){
+  const res = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}&page=${page}`);
   if (!res.ok) {
     throw new Error("API request failed!!");
   }
   const data = await res.json();
-  return data.results;
+  tv.push(...data.results);
+  if (data.page >= data.total_pages) break;
+  page++;
+}
+  return tv.slice(0, limit);
 }
 
-export async function getPopularPeople() {
-  const res = await fetch(`https://api.themoviedb.org/3/trending/person/day?api_key=${API_KEY}`);
+export async function getPopularPeople(limit = 50) {
+  const people = [];
+  let page = 1;
+  while (people.length < limit) {
+  const res = await fetch(`https://api.themoviedb.org/3/trending/person/day?api_key=${API_KEY}&page=${page}`);
   if (!res.ok) {
     throw new Error("API request failed!!");
   }
   const data = await res.json();
-  return data.results;
+  people.push(...data.results);  
+
+      if (data.page >= data.total_pages) break;
+    page++;
+  }
+
+  return people.slice(0, limit);
 }
 
 export const searchMovies = async (query) => {
