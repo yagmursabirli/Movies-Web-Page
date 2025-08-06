@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDetails } from '../Services/api';
 import { useMovieContext } from '../contexts/MovieContext';
-
+import BackToTopButton from '../components/BackToTopButton';
 
 function Detail() {
   const { id } = useParams();
@@ -87,6 +87,7 @@ function Detail() {
         
       </div>
     </div>
+    <BackToTopButton/>
   </div>
  
 );
