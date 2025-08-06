@@ -11,7 +11,7 @@ function HomeV2() {
     const [tvShows, setTvShows] = useState([]);
     const [people, setPeople] = useState([]);
     
-
+  
 
     useEffect(() => {
         async function fetchData() {
