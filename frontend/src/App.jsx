@@ -9,12 +9,15 @@ import HomeV2 from "./pages/HomeV2";
 import Detail from "./pages/Detail"; 
 import SeeAll from './pages/SeeAll'
 
+
+
 function App() {
    
   
     return (
     <MovieProvider>
       <Navbar />
+      
       <Routes>
         <Route path="/" element={<HomeV2 />} />
         <Route path="/favorites" element={<Favorites />} />

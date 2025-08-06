@@ -2,6 +2,8 @@ import React from 'react'
 import Slider from '../components/Slider'
 import {getPopularTV, getPopularPeople, getPopularMovies} from '../Services/api'
 import { useState, useEffect } from 'react';
+import BackToTopButton from '../components/BackToTopButton';
+
 
 function HomeV2() {
 
@@ -28,10 +30,13 @@ function HomeV2() {
 
   return (
     <div className='space-y-12 p-8'>
+   
         <Slider title="TV Shows" items={tvShows} type="tv"/>
         <Slider title="People" items={people} type="person"/>
         <Slider title="Movies" items={movies} type="movie"/>
+        <BackToTopButton/>
     </div>
+    
   )
 }
 
