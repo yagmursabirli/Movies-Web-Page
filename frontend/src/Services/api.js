@@ -40,7 +40,7 @@ export async function getPopularTV(limit = 50) {
 
 export async function getPopularPeople(limit = 50) {
     const people = [];
-    let page = 1;
+    let page = 2;
     while (people.length < limit) {
         const res = await fetch(`${BASE_URL}/trending/person/day?api_key=${API_KEY}&page=${page}`);
         if (!res.ok) {

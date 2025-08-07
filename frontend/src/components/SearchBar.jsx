@@ -16,7 +16,7 @@ const SearchBar = ({ onSearch, initialQuery = "", placeholderText = "Search..." 
             <input 
                 type="text" 
                 placeholder={placeholderText}
-                className='search-input flex-1 py-[12px] px-[16px] border-none rounded-md bg-bgHome  text-[16px] focus:outline-none shadow-home bg-btnBack' 
+                className='search-input flex-1 py-[12px] px-[16px] border-none rounded-md bg-bgHome  text-[16px] focus:outline-none shadow-home bg-btnBack text-white' 
                 value={searchQuery} 
                 onChange={(e) => setSearchQuery(e.target.value)}
             />

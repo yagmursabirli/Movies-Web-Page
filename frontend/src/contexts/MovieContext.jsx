@@ -1,5 +1,6 @@
 import React from 'react'
 import { createContext, useState, useContext, useEffect } from 'react'
+import LoadingState from '../components/LoadingState';
 
 const MovieContext = createContext();
 
@@ -8,11 +9,14 @@ export const useMovieContext = () => useContext(MovieContext);
 export const MovieProvider= ({children}) => {
 
     const [favorites, setFavorites] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        setIsLoading(true);
         const storedFavs = localStorage.getItem("favorites");
 
-        if(storedFavs) setFavorites(JSON.parse(storedFavs))
+        if(storedFavs) setFavorites(JSON.parse(storedFavs));
+        setIsLoading(false); 
     }, []);
 
     useEffect(() => {
@@ -37,6 +41,10 @@ export const MovieProvider= ({children}) => {
         addFavorites,
         removeFromFavorites,
         isFavorite
+    }
+
+    if (isLoading) {
+        <LoadingState/>
     }
 
     return <MovieContext.Provider value={value}>

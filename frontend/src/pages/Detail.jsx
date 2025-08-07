@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getDetails } from '../Services/api';
 import { useMovieContext } from '../contexts/MovieContext';
 import BackToTopButton from '../components/BackToTopButton';
+import LoadingState from '../components/LoadingState';
 
 function Detail() {
   const { id } = useParams();
@@ -13,13 +14,16 @@ function Detail() {
 
   const [data, setData] = useState(null);
   const [showFullBio, setShowFullBio] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
 
   useEffect(() => {
     async function fetchDetails() {
+      setIsLoading(true);
       try {
         const res = await getDetails(type, id);
         setData(res);
+        setIsLoading(false);
       } catch (err) {
         console.error("Detail fetch failed:", err);
       }
@@ -27,7 +31,11 @@ function Detail() {
     fetchDetails();
   }, [id, type]);
 
-  if (!data) return <div className="text-center p-8 text-white">Loading...</div>;
+     if (isLoading) {
+    return <LoadingState/>
+  }
+
+
 
   
   const favorite = isFavorite(data.id);

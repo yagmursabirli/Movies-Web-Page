@@ -6,6 +6,7 @@ import { getPopularTV, getPopularPeople, getPopularMovies, searchMovies, searchP
 import MovieCard from '../components/MovieCard'
 import BackToTopButton from '../components/BackToTopButton';
 import SearchBar from '../components/SearchBar';
+import LoadingState from '../components/LoadingState';
 
 function SeeAll() {
     const { type } = useParams();
@@ -16,6 +17,8 @@ function SeeAll() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [placeholderText, setPlaceholderText] = useState("Search...");
+
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleSearch = async (query) => {
         if (!query) {
@@ -43,6 +46,7 @@ function SeeAll() {
 
     useEffect(() => {
         async function fetchData() {
+            setIsLoading(true);
             if (type === 'movie') {
                 setTitle("All Movies");
                 setPlaceholderText("Search for movies...");
@@ -56,6 +60,7 @@ function SeeAll() {
                 setPlaceholderText("Search for people...");
                 setItems(await getPopularPeople());
             }
+            setIsLoading(false);
         }
         fetchData();
     }, [type]);
@@ -67,8 +72,12 @@ function SeeAll() {
         return unique;
     }, []);
 
+      if (isLoading) {
+    return <LoadingState/>
+  }
+
     return (
-        <div className='bg-home'>
+        <div className='bg-home min-h-screen'>
             <SearchBar onSearch={handleSearch}  placeholderText={placeholderText}/>
             {loading && <div className="text-center">Loading...</div>}
             {error && <div className="text-center text-red-500">{error}</div>}
