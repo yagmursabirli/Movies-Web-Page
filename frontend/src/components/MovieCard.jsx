@@ -27,16 +27,16 @@ function MovieCard({movie}) {
    return (
     <div
       onClick={handleCardClick}
-       className='relative bg-movieCard transition-transform duration-200 flex flex-col hover:-translate-y-[5px] cursor-pointer rounded-lg'
+        className='relative rounded-lg overflow-hidden bg-movieCard h-full transition-transform duration-200 flex flex-col hover:-translate-y-[5px] cursor-pointer'
     >
       <div className='relative w-full aspect-[2/3]'>
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path || movie.profile_path}`}
           alt={movie.title || movie.name}
-          className='w-full h-full object-cover'
+          className='w-full h-full object-cover rounded-lg'
         />
 
-        <div className='movie-overlay absolute top-0 left-0 right-0 bottom-0 opacity-0 hover:opacity-100 transition-opacity duration-200 bg-gradient-to-b from-black/10 to-black/80 flex flex-col justify-end p-4'>
+        <div className='movie-overlay absolute top-0 left-0 right-0 bottom-0 opacity-0 hover:opacity-100 transition-opacity duration-200 bg-gradient-to-b from-black/10 to-black/80 flex flex-col justify-end p-4 rounded-lg'>
           <button
             onClick={onFavoriteClick}
             className={`absolute top-4 right-4 text-[1.5rem] p-2 bg-black/50 rounded-full w-10 h-10 flex items-center justify-center transition-colors duration-200 hover:bg-black/80 ${
