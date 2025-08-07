@@ -29,7 +29,7 @@ function HomeV2() {
     }, [])
 
   return (
-    <div className='space-y-12 p-8'>
+    <div className='space-y-12 p-8  bg-home text-white'>
    
         <Slider title="TV Shows" items={tvShows} type="tv"/>
         <Slider title="People" items={people} type="person"/>

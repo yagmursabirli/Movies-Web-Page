@@ -15,6 +15,7 @@ function SeeAll() {
     const [searchResults, setSearchResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [placeholderText, setPlaceholderText] = useState("Search...");
 
     const handleSearch = async (query) => {
         if (!query) {
@@ -44,12 +45,15 @@ function SeeAll() {
         async function fetchData() {
             if (type === 'movie') {
                 setTitle("All Movies");
+                setPlaceholderText("Search for movies...");
                 setItems(await getPopularMovies());
             } else if (type === 'tv') {
                 setTitle("All TV Shows");
+                setPlaceholderText("Search for TV Shows...");
                 setItems(await getPopularTV());
             } else if (type === 'people' || type === 'person') {
                 setTitle("All People");
+                setPlaceholderText("Search for people...");
                 setItems(await getPopularPeople());
             }
         }
@@ -64,21 +68,20 @@ function SeeAll() {
     }, []);
 
     return (
-        <div>
-            <SearchBar onSearch={handleSearch} />
+        <div className='bg-home'>
+            <SearchBar onSearch={handleSearch}  placeholderText={placeholderText}/>
             {loading && <div className="text-center">Loading...</div>}
             {error && <div className="text-center text-red-500">{error}</div>}
 
             {searchResults.length > 0 ? (
-                // Arama sonuçları varsa, onları göster
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 px-4">
+                <div className= "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 px-4">
                     {searchResults
                         .filter(item => item.profile_path || item.poster_path)
                         .map(item => <MovieCard key={item.id} movie={item} />)}
                 </div>
             ) : (
                 <>
-                    <h2 className='text-2xl font-bold ml-[20px] md:my-[15px] mb-4'>{title}</h2>
+                    <h2 className='text-2xl font-bold ml-[20px] md:my-[15px] mb-4 text-white'>{title}</h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 px-4">
                         {uniqueItems
                             .filter(item => item.profile_path || item.poster_path)

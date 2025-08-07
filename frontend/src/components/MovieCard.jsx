@@ -27,7 +27,7 @@ function MovieCard({movie}) {
    return (
     <div
       onClick={handleCardClick}
-      className='relative rounded-lg overflow-hidden bg-[#1a1a1a] h-full transition-transform duration-200 flex flex-col hover:-translate-y-[5px] cursor-pointer'
+       className='relative bg-movieCard transition-transform duration-200 flex flex-col hover:-translate-y-[5px] cursor-pointer rounded-lg'
     >
       <div className='relative w-full aspect-[2/3]'>
         <img
@@ -49,10 +49,10 @@ function MovieCard({movie}) {
       </div>
 
       <div className='p-4 flex-1 flex flex-col gap-2'>
-        <h3 className='text-base m-0'>{movie.title || movie.name || profile_path || original_title}</h3>
+        <h3 className='text-base m-0 text-white'>{movie.title || movie.name || profile_path || original_title}</h3>
 
         {(movie.release_date || movie.first_air_date) && (
-          <p className='text-sm text-gray-400'>
+          <p className='text-sm text-white'>
             {movie.release_date?.split('-')[0] || movie.first_air_date?.split('-')[0]}
           </p>
         )}

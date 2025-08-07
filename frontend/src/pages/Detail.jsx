@@ -33,7 +33,7 @@ function Detail() {
   const favorite = isFavorite(data.id);
 
    return (
-    <div className="p-8 text-white">
+    <div className="p-8 text-white bg-home min-h-screen">
       <div className="max-w-5xl mx-auto flex flex-col gap-4">
 
        <h1 className="text-3xl font-bold mb-10 text-center md:text-left self-center md:self-start">{data.title || data.name}</h1>
@@ -49,12 +49,12 @@ function Detail() {
         ) : null}
 
         
-        <div className="flex-1 flex flex-col md:items-end mb-4 ">
+        <div className="flex-1 flex flex-col justify-center items-center md:items-end mb-4 ">
           <button
             onClick={() =>
               favorite ? removeFromFavorites(data.id) : addFavorites(data)
             }
-            className={`text-sm md:text-base px-4 py-2 rounded-full transition-colors duration-200 ${
+            className={`text-sm md:text-base px-[10px] py-2 w-[300px] items-center justify-center rounded-full transition-colors duration-200 ${
               favorite ? 'bg-red-600 text-white' : 'bg-white text-black hover:bg-gray-200'
             }`}
           >

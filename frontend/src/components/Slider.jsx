@@ -19,7 +19,6 @@ function Slider({title, items, type}) {
         }
     }
 
-    // Mükerrer öğeleri ayıklayan kısım
     const uniqueItems = items.reduce((unique, item) => {
         if (!unique.some(u => u.id === item.id)) {
             unique.push(item);
@@ -34,7 +33,7 @@ function Slider({title, items, type}) {
                 <h2 className='text-2xl font-bold'>{title}</h2>
                 <button
                     onClick={() => navigate(`/see-all/${type}`)}
-                    className='text-blue-400 hover:underline text-sm mb-[5px] px-[25px]'
+                    className='text-btn hover:underline text-sm mb-[5px] px-[25px] bg-btnBack'
                 >
                     See All
                 </button>
@@ -57,7 +56,7 @@ function Slider({title, items, type}) {
             <div 
                 ref={scrollRef}
                 className='flex gap-4 overflow-x-auto px-4 scrollbar-hide scroll-smooth ml-[10px] mr-[15px]'>
-                {uniqueItems // **Düzeltme: Burada "items" yerine "uniqueItems" kullanıyoruz**
+                {uniqueItems 
                     .filter(item => item.poster_path || item.profile_path)
                     .map((item) => (
                         <Link

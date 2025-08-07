@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <div className='navbar bg-bgNavbar p-[16px] md:py-[16px] md:px-[32px] flex justify-between items-center shadow-custom '>
         <div className='navbar-brand text-[16px] md:text-[24px] font-bold'>
-            <Link to="/" className='text-blue-400'>Movie App</Link>
+            <Link to="/" className='text-blue-300'>Movie App</Link>
         </div> 
         <div className="navbar-links flex md:gap-[32px] gap-[16px]">
 
